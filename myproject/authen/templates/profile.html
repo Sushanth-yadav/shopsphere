@@ -1,0 +1,88 @@
+{%extends 'main.html'%}
+{%block abc%}
+<style>
+/* Page base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+/* Keep navbar on top */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Wrapper - NOW TOP ALIGNED (NOT CENTERED VERTICALLY) */
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;   /* key change */
+    padding-top: 20px;        /* controls distance from navbar */
+}
+
+/* Profile card */
+.profile-card {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    min-width: 320px;
+}
+
+/* Title */
+.profile-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Links */
+.profile-card a {
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 10px;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Logout */
+.profile-card a[href*="logout"] {
+    background: #dc3545;
+    color: white;
+}
+
+.profile-card a[href*="logout"]:hover {
+    background: #b52a37;
+}
+
+/* Reset */
+.profile-card a[href*="reset"] {
+    background: #2874f0;
+    color: white;
+}
+
+.profile-card a[href*="reset"]:hover {
+    background: #1c5dc9;
+}
+</style>
+<center>
+    <div class="profile-wrapper">
+    <div class="profile-card">
+    <h2>profile page</h2>
+    first_name:{{request.user.first_name}} <br><br>
+    last_name:{{request.user.last_name}} <br><br>
+    email:{{request.user.email}} <br><br>
+    username:{{request.user.username}} <br><br>
+    <a href="{%url 'logout_'%}">logout</a>
+    <a href="{%url 'reset'%}">reset password</a>
+</center>
+</div>
+</div>
+{%endblock%}

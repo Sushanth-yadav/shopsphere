@@ -1,0 +1,160 @@
+{% extends 'main.html' %}
+{%block abc%}
+<style>
+    /* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Heading */
+h2 {
+    color: #333;
+    margin: 15px 0;
+}
+
+/* Category Filter Buttons */
+.category-form {
+    margin: 20px 0;
+}
+
+.category-form input[type="submit"] {
+    background-color: #2874f0;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.category-form input[type="submit"]:hover {
+    background-color: #1c5dc9;
+}
+
+/* Product Container */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+/* Product Card */
+.product-card {
+    background: white;
+    width: 350px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Product Image */
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Product Name */
+.product-card h3 {
+    color: #333;
+    margin: 15px 0;
+}
+
+/* Offer Badge */
+.offer {
+    color: white;
+    background-color: red;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Trending Badge */
+.trending {
+    color: white;
+    background-color: orange;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Add to Cart Button */
+.cart-btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.cart-btn:hover {
+    background-color: #218838;
+}
+
+/* Messages */
+.message {
+    color: red;
+    font-weight: bold;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .product-card {
+        width: 90%;
+    }
+
+    .product-card img {
+        height: 220px;
+    }
+}
+</style>
+<center>
+    <form action="" class="category-form">
+    {%for i in category%}
+        <input type="submit" name="cat" id="" value="{{i}}">
+    {%endfor%}
+    </form>
+</center>
+<center>
+    <h2 class="title">home page</h2>
+    <form action="" method="POST">
+        {%csrf_token%}
+        {%  if messages%}
+            {% for i in messages%}
+            <h2 style="color: red;" class="message">{{i}}</h2>
+            {%endfor%}
+        {%endif%}
+        </center>
+        <div class="product-container">
+        {%for i in data%}
+        <div class="product-card">
+        {%if offer%}
+        <h2 style="color: red;">50%</h2>
+        {%endif%}
+        {%if trend%}
+        <h2 style="color: red;">trending</h2>
+        {%endif%}
+        <h2>{{i.pname}}</h2>
+        <img src="{{i.pimage.url}}" alt=""  style="height: 300px; width: 400px;" class="product-img"><br><br>
+         <a href="{%url 'add_cart' i.id %}" class="cart-btn">add to cart</a>
+        </div>
+        {%endfor%}
+        </div>
+{%endblock%}

@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    height: 80px; /* better than 10% */
+    width: 100%;
+    display: flex;
+    background-color: darkkhaki;
+}
+
+.logo {
+    height: 100%;
+    width: 30%;
+    color: rgb(76, 3, 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.links {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.links a {
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(76, 3, 3);
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}

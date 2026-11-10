@@ -1,0 +1,103 @@
+{%extends 'main.html'%}
+{%block abc%}
+<style>
+    /* Page background */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+/* Center wrapper (your <center>) */
+center {
+    margin-top: 40px;
+}
+
+/* Title */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    display: inline-block;
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    text-align: left;
+    min-width: 320px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Focus effect */
+input:focus {
+    outline: none;
+    border-color: #2874f0;
+    box-shadow: 0 0 5px rgba(40,116,240,0.3);
+}
+
+/* Submit button */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #2874f0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1c5dc9;
+}
+
+/* Messages */
+h2[style] {
+    color: red !important;
+    font-size: 16px;
+}
+</style>
+<center>
+    <h2>reset password  page</h2>
+     {%csrf_token%}
+        {%  if messages%}
+            {% for i in messages%}
+            <h2 style="color: red;">{{i}}</h2>
+            {%endfor%}
+        {%endif%}
+    <form action="" method="POST">
+        {%csrf_token%}
+        {%if new%}
+        <label for="">enter new password</label>
+        <input type="password" name="newpass" id=""> <br><br>
+        {%else%}
+        <label for=""> enter old password</label>
+        <input type="password" name="oldpass" id=""> <br><br>
+        {%endif%}
+         <button type="submit">submit</button>
+    </form>
+</center>
+{%endblock%}

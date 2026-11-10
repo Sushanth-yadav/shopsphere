@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block abc %}
+
+<center>
+
+    <h2>Forgot Password</h2>
+
+    {% if messages %}
+        {% for i in messages %}
+            <h3 style="color:red;">{{ i }}</h3>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if not show_password_form %}
+
+            <label>Enter Username</label><br>
+            <input type="text" name="uname" required><br><br>
+
+        {% else %}
+
+            <input type="hidden" name="uname" value="{{ uname }}">
+
+            <label>Enter New Password</label><br>
+            <input type="password" name="npass" required><br><br>
+
+        {% endif %}
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+</center>
+
+{% endblock %}

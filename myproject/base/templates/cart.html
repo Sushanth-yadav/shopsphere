@@ -1,0 +1,120 @@
+{% extends 'main.html' %}
+{%block abc%}
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading */
+h2 {
+    color: #333;
+    margin: 20px 0;
+}
+
+/* Table Styling */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background-color: #2874f0;
+    color: white;
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Quantity Buttons */
+td a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background-color: #28a745;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: 0.3s;
+}
+
+td a:hover {
+    background-color: #218838;
+}
+
+/* Delete Button */
+td a[href*="delete"] {
+    background-color: #dc3545;
+}
+
+td a[href*="delete"]:hover {
+    background-color: #c82333;
+}
+
+/* Total Price Section */
+.total-price {
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2874f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        width: 95%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .total-price {
+        font-size: 20px;
+    }
+}
+</style>
+<center>
+    <h2>cart page</h2>
+    <table border="4px">
+        <tr>
+            <th>S.NO</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>TotalPrice</th>
+            <th>Action</th>
+        </tr>
+        {%for i in cart%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.pname}}</td>
+            <td>{{i.price}}</td>
+            <td><a href="{% url 'minus' i.id%}">-</a>{{i.quantity}} <a href="{% url 'plus' i.id%}">+</a></td>
+            <td>{{i.total_price}}</td>
+            <td><a href="{%url 'delete' i.id%}">delete</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+    <br><br><br>
+    <h2>TotalPrice:{{TA}}</h2>
+</center>
+
+{%endblock%}
